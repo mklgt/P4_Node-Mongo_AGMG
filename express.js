@@ -1,0 +1,41 @@
+var express = require('express');
+var path = require('path');
+var cn = require("./mongo/conexion");
+var bodyParse = require("body-parser");
+
+
+var app = express();
+
+app.use("/css", express.static("./node_modules/bootstrap/dist/css"));
+app.use("/files", express.static(path.join(__dirname, "files")));
+app.use(bodyParse.json());
+
+var cn = require("./mongo/conexion")
+
+app.get("/", (request, response) => {
+    response.sendFile(path.join(__dirname, "pages/reserva.html"));
+})
+app.get("/listarReservas", (request, response) => {
+    cn.getAll(request, response);
+})
+app.get("/recuperarReservas/:usuario", (request, response) => {
+    cn.getFindName(request, response);
+})
+
+app.post("/insertarReservas", (request, response) => {
+    cn.insertarReserva(request, response);
+});
+
+//Envío de campos: agregar/insertar o editar/actualizar con post
+app.post("/actualizarReservas", (request, response) => {
+   cn.updateReserva(request, response);
+});
+
+
+app.put("/eliminarReservas/:usuario", (request, response) => {
+    cn.deleteName(request, response);
+})
+
+app.listen("9000", () => {
+    console.log('El servidor está iniciado');
+})
