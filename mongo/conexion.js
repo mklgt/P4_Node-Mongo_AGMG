@@ -31,6 +31,7 @@ var Reservas = mongoose.model("reservas", objeto);
 class ReservaController {
 
     getAll(request, response) {
+        console.log('aqui no salta')
         Reservas.aggregate([{
             $project: {
                 _id: 1,
@@ -48,10 +49,10 @@ class ReservaController {
     }
 
     getFindName(request, response) {
-        var usuario = request.params.usuario;
+        var id = request.params.id;
         Reservas.aggregate([{
                 $match: {
-                    usuario: usuario
+                    _id: id
                 }
             },
             {
@@ -72,10 +73,10 @@ class ReservaController {
     }
 
     deleteName(request, response) {
-        var usuario = request.params.usuario;
-        //console.log(usuario)
+        var id = request.params.id;
+        console.log('->'+id)
         Reservas.deleteOne({
-            usuario: usuario
+            _id: id
         }).then(res => {
             response.json({
                 estado: "OK"
@@ -88,13 +89,14 @@ class ReservaController {
     }
 
     updateReserva(request, response) {
+        var id = request.body.id;
         var usuario = request.body.usuario;
         var aula = request.body.aula;
         var fecha = request.body.fecha;
         var horaDesde = request.body.horaDesde;
         var horaHasta = request.body.horaHasta;
         Reservas.updateOne({
-            usuario: usuario
+            _id: id
         }, {
             $set: {
                 usuario: usuario,

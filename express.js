@@ -18,7 +18,7 @@ app.get("/", (request, response) => {
 app.get("/listarReservas", (request, response) => {
     cn.getAll(request, response);
 })
-app.get("/recuperarReservas/:usuario", (request, response) => {
+app.get("/recuperarReservas/:id", (request, response) => {
     cn.getFindName(request, response);
 })
 
@@ -32,7 +32,8 @@ app.post("/actualizarReservas", (request, response) => {
 });
 
 
-app.put("/eliminarReservas/:usuario", (request, response) => {
+app.put("/eliminarReservas/:id", (request, response) => {
+    console.log('aquiiiiii')
     cn.deleteName(request, response);
 })
 

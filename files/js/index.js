@@ -14,7 +14,8 @@ function listar() {
 
 function listarReservas(res) {
     var contenido = `
-    <table class="table">
+    <h3>Reservas realizadas</h3>
+    <table class="table tabla-reservas">
     <thead>
             <tr>
                 <th>Usuario</th>
@@ -35,10 +36,10 @@ function listarReservas(res) {
                 <td>${data.horaDesde}</td>
                 <td>${data.horaHasta}</td>
                 <td>
-                <button class='btn btn-primary' onclick='verFormulario("${data.usuario}")'>
+                <button class='btn btn-secondary' onclick='verFormulario("${data._id}")'>
                 Editar
                 </button>
-                <button class='btn btn-danger' onclick='eliminar("${data.usuario}")'>
+                <button class='btn btn-danger' onclick='eliminar("${data._id}")'>
                 Eliminar
                 </button>
                 </td>
@@ -168,10 +169,10 @@ function enviarDatos() {
 }
 
 
-function eliminar(usuario) {
-    console.log(usuario)
+function eliminar(id) {
+    console.log(id)
     if (confirm("¿Deseas eliminar el registro?") == 1) {
-        fetch("/eliminarReservas/" + usuario, {
+        fetch("/eliminarReservas/" + id, {
             method: "PUT"
         }).then(res => {
             res.json().then(rpta => {
