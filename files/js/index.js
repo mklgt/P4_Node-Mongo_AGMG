@@ -170,7 +170,7 @@ function enviarDatos() {
 
 function eliminar(usuario) {
     console.log(usuario)
-    if ( confirm("¿Deseas eliminar el registro?") == 1) {
+    if (confirm("¿Deseas eliminar el registro?") == 1) {
         fetch("/eliminarReservas/" + usuario, {
             method: "PUT"
         }).then(res => {

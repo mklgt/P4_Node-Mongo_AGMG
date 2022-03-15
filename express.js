@@ -28,7 +28,7 @@ app.post("/insertarReservas", (request, response) => {
 
 //Envío de campos: agregar/insertar o editar/actualizar con post
 app.post("/actualizarReservas", (request, response) => {
-   cn.updateReserva(request, response);
+    cn.updateReserva(request, response);
 });
 
 
@@ -36,12 +36,12 @@ app.put("/eliminarReservas/:usuario", (request, response) => {
     cn.deleteName(request, response);
 })
 
-/*app.listen("9000", () => {
+app.listen("9000", () => {
     console.log('El servidor está iniciado');
-})*/
+})
 
-let port = process.env.PORT;
+/*let port = process.env.PORT;
 if (port == null || port == "") {
-  port = 8000;
+    port = 8000;
 }
-app.listen(port);
+app.listen(port);*/

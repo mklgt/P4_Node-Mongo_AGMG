@@ -1,5 +1,5 @@
 var mongoose = require("mongoose");
-var mongoClient  = require("mongodb");
+var mongoClient = require("mongodb");
 
 //var cadenaConexion = "mongodb://localhost/reservas";
 //Linea para conectarlo con Mongo Atlas
@@ -131,12 +131,14 @@ class ReservaController {
             "horaHasta": horaHasta
         })
 
-        oReserva.save(function(err, res) {
-            if(err) {
+        oReserva.save(function (err, res) {
+            if (err) {
                 console.log("Error al registrar")
-            }else {
+            } else {
                 console.log("OK");
-                response.json({estado : "OK"});
+                response.json({
+                    estado: "OK"
+                });
             }
         })
     }
