@@ -36,6 +36,12 @@ app.put("/eliminarReservas/:usuario", (request, response) => {
     cn.deleteName(request, response);
 })
 
-app.listen("9000", () => {
+/*app.listen("9000", () => {
     console.log('El servidor está iniciado');
-})
+})*/
+
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 8000;
+}
+app.listen(port);

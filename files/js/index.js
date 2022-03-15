@@ -126,7 +126,6 @@ function enviarDatos() {
         document.getElementById('divError').innerHTML = contenido;
         return;
     } else {
-
         var ruta = "";
         if (id == "") {
             ruta = "/insertarReservas";
