@@ -134,8 +134,9 @@ class ReservaController {
         var fecha = request.body.fecha;
         var horaDesde = request.body.horaDesde;
         var horaHasta = request.body.horaHasta;
+
         Reservas.updateOne({
-            _id: id
+            usuario: usuario
         }, {
             $set: {
                 usuario: usuario,
