@@ -128,7 +128,7 @@ class ReservaController {
 
     //Actualiza una reserva en la base de datos
     updateReserva(request, response) {
-        var id = mongoose.Types.ObjectId(request.body.id);
+        var id = request.body.id;
         var usuario = request.body.usuario;
         var aula = request.body.aula;
         var fecha = request.body.fecha;
@@ -136,7 +136,7 @@ class ReservaController {
         var horaHasta = request.body.horaHasta;
 
         Reservas.updateOne({
-            _id: id
+            usuario: usuario
         }, {
             $set: {
                 usuario: usuario,
