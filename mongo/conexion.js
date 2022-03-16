@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 var mongoClient = require("mongodb");
 
-//var cadenaConexion = "mongodb://localhost/reservas";
 //Linea para conectarlo con Mongo Atlas
 var cadenaConexion = "mongodb+srv://mgoicoeoca:wfk7hTXJTvFZ6wEF@clustermg.pz7eh.mongodb.net/Reservas?retryWrites=true&w=majority";
 mongoose.connect(cadenaConexion, (err, res) => {
@@ -12,6 +11,7 @@ mongoose.connect(cadenaConexion, (err, res) => {
     }
 })
 
+//Creamos la estructura de nuestro objemoc
 var Schema = mongoose.Schema;
 
 var objeto = new Schema({
@@ -30,9 +30,45 @@ var Reservas = mongoose.model("reservas", objeto);
 
 class ReservaController {
 
+    //Obtiene todos los registros de la vase de datos. Por defecto se ordenadar por id. Tambien pueden ser ordenados por usuario, fecha o aula.
     getAll(request, response) {
-        console.log('aqui no salta')
-        Reservas.aggregate([{
+        let filtro = "";
+
+        var orden = request.params.orden;
+
+        switch (orden) {
+            case "pre":
+                filtro = {
+                    $sort: {
+                        _id: 1
+                    }
+                }
+                break;
+            case "usu":
+                filtro = {
+                    $sort: {
+                        usuario: 1
+                    }
+                }
+                break;
+            case "fec":
+                filtro = {
+                    $sort: {
+                        fecha: 1
+                    }
+                }
+                break;
+            case "aul":
+                filtro = {
+                    $sort: {
+                        aula: 1
+                    }
+                }
+                break;
+
+        }
+
+        Reservas.aggregate([filtro, {
             $project: {
                 _id: 1,
                 usuario: 1,
@@ -48,6 +84,7 @@ class ReservaController {
         })
     }
 
+    //busca una sola reserva para el formulario
     getFindName(request, response) {
         var id = request.params.id;
         Reservas.aggregate([{
@@ -72,9 +109,10 @@ class ReservaController {
         })
     }
 
+    //Borra una reserva que se busca por un id unico
     deleteName(request, response) {
         var id = request.params.id;
-        console.log('->'+id)
+        console.log('->' + id)
         Reservas.deleteOne({
             _id: id
         }).then(res => {
@@ -88,6 +126,7 @@ class ReservaController {
         })
     }
 
+    //Actualiza una reserva en la base de datos
     updateReserva(request, response) {
         var id = request.body.id;
         var usuario = request.body.usuario;
@@ -116,6 +155,7 @@ class ReservaController {
         })
     }
 
+    //Inserta una reserva en la base de datos
     insertarReserva(request, response) {
         var id = mongoose.Types.ObjectId();
         var usuario = request.body.usuario;

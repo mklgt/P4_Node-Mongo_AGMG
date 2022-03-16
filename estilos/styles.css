@@ -1,0 +1,204 @@
+/* fuentes:
+https://www.w3schools.com/html/html_layout.asp
+https://peterned.home.xs4all.nl/
+modificaciones: Karmele Arocena */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+/*Variables*/
+:root {
+--ColorPrincipal: #F0F5F9;
+--ColorSecundario: #C9D6DF;
+--Gris: #52616B;
+--GrisClaro: #75848d;
+--Negro: #1E2022;
+--Rojo: rgb(245, 97, 97);
+--Verde: rgb(165, 248, 165);
+
+}
+
+* {
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
+}
+
+body {
+background-color: var(--ColorPrincipal);
+margin: 0;
+}
+
+/* Estilo del header*/
+
+header {
+background-color: var(--Gris);
+border-bottom: 6px double var(--Negro);
+border-top: 6px double var(--Negro);
+color: white;
+padding: 5px;
+text-align: center;
+}
+
+h1 {
+    margin: 30px auto;
+}
+
+h1 a {
+    text-decoration: none;
+    color: var(--Negro);
+}
+h1 a:hover {
+    color: var(--ColorSecundario);
+}
+
+
+/**/
+body, #divFormulario {
+    background-color: var(--ColorPrincipal);
+}
+
+#divReserva {
+    margin: 40px 10px;
+    border: 1px solid black;
+}
+
+.tabla-reservas, #divReserva {
+    background-color: var(--ColorSecundario);
+}
+
+#divFormulario h1 {
+    margin: 0;
+}
+
+#divFormulario {
+    padding: 0px;
+}
+
+/*El contenedor principal */
+
+main {
+background: #F7FBFC;
+margin: 0 auto;
+/* centrado, no en IE5 */
+width: 80%;
+}
+
+form {
+    margin: 0;
+}
+
+input[type=text], input[type=password], input[type=email], select, textarea {
+width: 100%;
+padding: 12px 20px;
+margin: 8px 0;
+display: inline-block;
+border: 1px solid #ccc;
+border-radius: 4px;
+box-sizing: border-box;
+}
+
+input[type=submit] {
+width: 100%;
+background-color: rgb(120, 145, 121);
+color: white;
+padding: 14px 20px;
+margin: 8px 0;
+border: none;
+border-radius: 4px;
+cursor: pointer;
+}
+
+input[type=submit]:hover {
+background-color: #9eb4af;
+}
+
+div {
+border-radius: 5px;
+background-color: #f2f2f2;
+padding: 20px;
+}
+
+div .uno {
+background-color: var(--ColorSecundario);
+}
+
+select {
+padding: 10px;
+}
+
+option {
+min-height: 2em;
+padding: 2px 2px 2px;
+}
+
+
+
+
+
+/*Estilos del proyecto*/
+
+.horario {
+display: flex;
+justify-content: space-around;
+}
+
+.horas {
+display: flex;
+flex-direction: column;
+gap: 20px;
+}
+
+/*Vista resultado*/
+.resultado {
+background-color: var(--Verde);
+}
+
+.error {
+background-color: var(--Rojo);
+margin-bottom: 15px;
+}
+
+
+button:hover{
+background-color: var(--GrisClaro);
+color: black;
+cursor: pointer;
+}
+
+
+/*Página consulta*/
+.calendario {
+    border: 2px solid var(--Negro);
+    background-color: var(--GrisClaro);
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.ocupado, .libre {
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.ocupado {
+    background-color: var(--Rojo);
+}
+.ocupado:hover {
+    background-color: rgb(245, 97, 97, 0.5);
+}
+
+.libre {
+    background-color: var(--Verde);
+}
+.libre:hover {
+    background-color: rgba(165, 248, 165, 0.5);
+}
+
+.libre a, .ocupado a {
+    text-decoration: none;
+    color: black;
+    padding-right: 75%;
+}
+
+.ocupado a {
+    padding-right: 0;
+}

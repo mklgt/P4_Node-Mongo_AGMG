@@ -3,10 +3,10 @@ var path = require('path');
 var cn = require("./mongo/conexion");
 var bodyParse = require("body-parser");
 
-
 var app = express();
 
 app.use("/css", express.static("./node_modules/bootstrap/dist/css"));
+app.use("/estilos", express.static("./estilos"));
 app.use("/files", express.static(path.join(__dirname, "files")));
 app.use(bodyParse.json());
 
@@ -15,7 +15,7 @@ var cn = require("./mongo/conexion")
 app.get("/", (request, response) => {
     response.sendFile(path.join(__dirname, "pages/reserva.html"));
 })
-app.get("/listarReservas", (request, response) => {
+app.get("/listarReservas/:orden", (request, response) => {
     cn.getAll(request, response);
 })
 app.get("/recuperarReservas/:id", (request, response) => {
@@ -33,16 +33,15 @@ app.post("/actualizarReservas", (request, response) => {
 
 
 app.put("/eliminarReservas/:id", (request, response) => {
-    console.log('aquiiiiii')
     cn.deleteName(request, response);
 })
 
-app.listen("9000", () => {
+/*app.listen("9000", () => {
     console.log('El servidor está iniciado');
-})
+})*/
 
-/*let port = process.env.PORT;
+let port = process.env.PORT;
 if (port == null || port == "") {
     port = 8000;
 }
-app.listen(port);*/
+app.listen(port);

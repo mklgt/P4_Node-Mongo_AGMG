@@ -1,22 +1,26 @@
-//alert("Hola txabales");
 window.onload = function () {
     listar();
 }
 
+//Busca todos los registros en la base de datos
 function listar() {
-    fetch("/listarReservas").then(res => {
+    fetch("/listarReservas/pre").then(res => {
         res.json().then(json => {
             //alert(JSON.stringify(json));
             listarReservas(json);
+
+
         })
     })
 }
 
+
+//Crea el HTML de la tabla de las reservas
 function listarReservas(res) {
     var contenido = `
     <h3>Reservas realizadas</h3>
-    <table class="table tabla-reservas">
-    <thead>
+      <table class="table tabla-reservas">
+      <thead>
             <tr>
                 <th>Usuario</th>
                 <th>Aula</th>
@@ -25,6 +29,7 @@ function listarReservas(res) {
                 <th>HoraHasta</th>
             </tr>
     </thead>`;
+
     contenido += "<tbody>";
     for (var i = 0; i < res.length; i++) {
         data = res[i];
@@ -48,24 +53,40 @@ function listarReservas(res) {
     contenido += "</tbody>";
     contenido += "</table>";
     document.getElementById("divReserva").innerHTML = contenido;
+    document.getElementById('selectOrden').addEventListener('change', function (e) {
+        let orden = e.target.value;
+        console.log(orden)
+        if (orden != "--Ordenar por--") {
+            fetch("/listarReservas/" + orden).then(res => {
+                res.json().then(json => {
+                    console.log("Hola")
+                    listarReservas(json);
+
+                });
+            });
+        }
+    })
 }
 
-function verFormulario(usuario) {
+//Muestra el formulario, en caso que sea para editar saldran todos los datos de la reserva
+function verFormulario(id) {
     document.getElementById("divError").style.display = "none";
     document.getElementById("divFormulario").style.display = "block";
     limpiar();
-    if (usuario != null) {
-        recuperarReserva(usuario);
+    if (id != null) {
+        recuperarReserva(id);
     }
 }
 
+//Oculta el formulario
 function ocultarFormulario() {
     document.getElementById("divFormulario").style.display = "none";
     document.getElementById("divError").style.display = "none";
 }
 
-function recuperarReserva(usuario) {
-    fetch("/recuperarReservas/" + usuario)
+//
+function recuperarReserva(id) {
+    fetch("/recuperarReservas/" + id)
         .then(res => {
             res.json().then(json => {
                 var data = json[0];
@@ -81,6 +102,7 @@ function recuperarReserva(usuario) {
         })
 }
 
+//Limpia todos los campos del formulario
 function limpiar() {
     document.getElementById('txtId').value = "";
     document.getElementById("txtUsuario").value = "";
@@ -90,6 +112,7 @@ function limpiar() {
     document.getElementById("txtHoraHasta").value = "";
 }
 
+//Verifica y envia la información de reservas
 function enviarDatos() {
     var id = document.getElementById('txtId').value;
     var usuario = document.getElementById('txtUsuario').value;
@@ -168,7 +191,7 @@ function enviarDatos() {
     }
 }
 
-
+//Elimina la reserva por id
 function eliminar(id) {
     console.log(id)
     if (confirm("¿Deseas eliminar el registro?") == 1) {

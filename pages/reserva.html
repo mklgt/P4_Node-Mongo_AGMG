@@ -7,20 +7,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reserva Aula</title>
     <link rel="stylesheet" href="../css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <script src="../files/js/index.js"></script>
+    <link rel="stylesheet" href="../estilos/styles.css">
+
 </head>
 
 <body>
     <header>
         <h1><a href="reserva.html">Lista de Reservas</a></h1>
         <nav>
-           <button onclick="verFormulario()" class="btn btn-dark">Agregar reserva</button> 
+            <button onclick="verFormulario()" class="btn btn-dark">Agregar reserva</button>
         </nav>
-    </header>    
-    <div id="divReserva">
-        
+    </header>
+    <div id="opciones"><select id="selectOrden" class="form-select" aria-label="Default select example">
+            <option selected>--Ordenar por--</option>
+            <option value="usu">Usuario</option>
+            <option value="fec">Fecha</option>
+            <option value="aul">Aula</option>
+        </select>
     </div>
+    <div id="divReserva">
+
+    </div>
+
     <div id="divFormulario" style="position:fixed; top:0;left:0;
 width:100%; display:none;">
         <div class="col-md-6 m-auto">
@@ -60,6 +68,7 @@ width:100%; display:none;">
         </div>
     </div>
     <div id="divError" style="position:absolute; bottom: 0;right: 0;" class="alert alert-danger mt-5"></div>
+    <script src="../files/js/index.js"></script>
 </body>
 
 </html>

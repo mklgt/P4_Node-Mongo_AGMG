@@ -1,0 +1,33 @@
+[{
+  "_id": "623059791c157b542b666e67",
+  "usuario": "mgoicoeoca",
+  "aula": "A05",
+  "fecha": "2022-03-27",
+  "horaDesde": "12:00",
+  "horaHasta": "12:12",
+  "__v": 0
+},{
+  "_id": "6230601bde34e48f760b143b",
+  "usuario": "agonzagam1",
+  "aula": "A03",
+  "fecha": "2022-03-23",
+  "horaDesde": "12:40",
+  "horaHasta": "13:36",
+  "__v": 0
+},{
+  "_id": "6231a3ddd12e3705d060acd6",
+  "usuario": "mgoicoeoca",
+  "aula": "A01",
+  "fecha": "2022-03-17",
+  "horaDesde": "8:30",
+  "horaHasta": "9:25",
+  "__v": 0
+},{
+  "_id": "6231a535d12e3705d060ad04",
+  "usuario": "agonzagam23",
+  "aula": "A06",
+  "fecha": "2022-03-25",
+  "horaDesde": "12:40",
+  "horaHasta": "12:56",
+  "__v": 0
+}]
