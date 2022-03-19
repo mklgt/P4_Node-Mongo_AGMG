@@ -33,39 +33,20 @@ class ReservaController {
     //Obtiene todos los registros de la vase de datos. Por defecto se ordenadar por id. Tambien pueden ser ordenados por usuario, fecha o aula.
     getAll(request, response) {
         let filtro = "";
-
         var orden = request.params.orden;
-
         switch (orden) {
             case "pre":
-                filtro = {
-                    $sort: {
-                        _id: 1
-                    }
-                }
+                filtro = {$sort: {_id: 1}}
                 break;
             case "usu":
-                filtro = {
-                    $sort: {
-                        usuario: 1
-                    }
-                }
+                filtro = {$sort: {usuario: 1}}
                 break;
             case "fec":
-                filtro = {
-                    $sort: {
-                        fecha: 1
-                    }
-                }
+                filtro = {$sort: {fecha: 1}}
                 break;
             case "aul":
-                filtro = {
-                    $sort: {
-                        aula: 1
-                    }
-                }
+                filtro = {$sort: {aula: 1}}
                 break;
-
         }
 
         Reservas.aggregate([filtro, {

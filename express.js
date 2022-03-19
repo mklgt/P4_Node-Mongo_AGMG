@@ -21,24 +21,17 @@ app.get("/listarReservas/:orden", (request, response) => {
 app.get("/recuperarReservas/:id", (request, response) => {
     cn.getFindName(request, response);
 })
-
 app.post("/insertarReservas", (request, response) => {
     cn.insertarReserva(request, response);
 });
-
 //Envío de campos: agregar/insertar o editar/actualizar con post
 app.post("/actualizarReservas", (request, response) => {
     cn.updateReserva(request, response);
 });
 
-
 app.put("/eliminarReservas/:id", (request, response) => {
     cn.deleteName(request, response);
 })
-
-/*app.listen("9000", () => {
-    console.log('El servidor está iniciado');
-})*/
 
 let port = process.env.PORT;
 if (port == null || port == "") {
